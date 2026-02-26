@@ -40,7 +40,7 @@ const Auth = {
   login: (email, password) =>
     api('/auth/login', 'POST', { email, password }),
 
-  me: () => api('/auth/me'),
+  me: () => api('/auth/me'), app.use('/api', router);
 };
 
 // ══════════════════════════════════════════════
