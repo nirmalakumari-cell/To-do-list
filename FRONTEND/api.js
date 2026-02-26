@@ -38,9 +38,11 @@ const Auth = {
     api('/auth/register', 'POST', { name, email, password }),
 
   login: (email, password) =>
+     app.use('/api', router);
     api('/auth/login', 'POST', { email, password }),
 
-  me: () => api('/auth/me'), app.use('/api', router);
+  me: () => api('/auth/me'), 
+   
 };
 
 // ══════════════════════════════════════════════
