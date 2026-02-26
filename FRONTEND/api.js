@@ -18,6 +18,8 @@ async function api(path, method = 'GET', body = null) {
     }
   };
 
+   // 🌍 Backend Base URL (Render Deployment)
+const API_URL = "https://to-do-list-2t2u.onrender.com";
   if (body) options.body = JSON.stringify(body);
 
   const res = await fetch(`${API_URL}${path}`, options);
