@@ -13,10 +13,6 @@ const examRoutes    = require('./routes/exams');
 const userRoutes    = require('./routes/users');
 const { sendDeadlineReminders } = require('./utils/emailService');
 
-app.use(cors({
-  origin: true,
-  credentials: true
-}));
 
 // Initialize Supabase connection check
 require('./utils/supabase');
@@ -46,6 +42,11 @@ app.use(cors({
 
     return callback(new Error(`CORS blocked for origin: ${origin}`));
   },
+  credentials: true
+}));
+
+app.use(cors({
+  origin: true,
   credentials: true
 }));
 
