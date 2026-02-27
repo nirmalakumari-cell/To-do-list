@@ -19,12 +19,23 @@ require('./utils/supabase');
 const app = express();
 
 // ── Middleware ──────────────────────────────
+const allowedOrigins = [
+  "http://localhost:3000",
+  "https://rococo-travesseiro-53fa37.netlify.app/"
+];
+
 app.use(cors({
-  origin: process.env.FRONTEND_URL || '*',
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
   credentials: true
 }));
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+
+app.options("*", cors());
 
 // ── API Routes ──────────────────────────────
 app.use('/api/auth',     authRoutes);
