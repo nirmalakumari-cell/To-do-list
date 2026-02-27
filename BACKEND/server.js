@@ -19,9 +19,16 @@ require('./utils/supabase');
 const app = express();
 
 // ── Middleware ──────────────────────────────
+app.use(cors({
+  origin: process.env.FRONTEND_URL || '*',
+  credentials: true
+}));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
 const allowedOrigins = [
   "http://localhost:3000",
-  "https://rococo-travesseiro-53fa37.netlify.app/"
+  "https://cyber-academy101.netlify.app"
 ];
 
 app.use(cors({
